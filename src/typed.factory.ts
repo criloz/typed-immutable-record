@@ -31,10 +31,10 @@ import {Record} from 'immutable';
  * TypedRecord<T>
  * @see recordify
  */
-export function makeTypedFactory<E, T extends TypedRecord<T> & E>(obj: E):
+export function makeTypedFactory<E, T extends TypedRecord<T> & E>(obj: E, name?:string):
   (val?: E) => T {
 
-  const ImmutableRecord = Record(obj);
+  const ImmutableRecord = Record(obj, name);
   return function TypedFactory(val: E = null): T {
     return new ImmutableRecord(val) as T;
   };
