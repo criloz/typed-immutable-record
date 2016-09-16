@@ -27,12 +27,14 @@ import {Record} from 'immutable';
  * @param obj is a plain JS that meets the requirements described in the
  * provided <E> interface. This object is used to set the default values of the
  * Immutable.Record
+ * @param name {string} - optional name for the  Immutable.Record, 
+ * used internally for distinguish an immutable.Record from an Immutable.Map 
  * @returns {function(E=): T} a function Factory to produce instances of a
  * TypedRecord<T>
  * @see recordify
  */
-export function makeTypedFactory<E, T extends TypedRecord<T> & E>(obj: E, name?:string):
-  (val?: E) => T {
+export function makeTypedFactory<E, T extends TypedRecord<T> & E>
+(obj: E, name?: string): (val?: E) => T {
 
   const ImmutableRecord = Record(obj, name);
   return function TypedFactory(val: E = null): T {
